@@ -6,10 +6,7 @@ from bs4 import BeautifulSoup
 from urllib.parse import unquote
 
 base_url = 'https://www.onecareer.jp'
-
-
 def get_all_urls(config: dict, company_url: str) -> list:
-
     driver = webdriver.Chrome('./chromedriver')
     try:
         driver.get(f'{base_url}/users/sign_in')
@@ -47,6 +44,7 @@ def get_all_urls(config: dict, company_url: str) -> list:
 
             soup = BeautifulSoup(driver.page_source, 'html.parser')
             experiences = soup.find_all('div', class_='v2-experience')
+            # print(len(experiences))
             if len(experiences) > 0:
                 urls += [
                         f'{base_url}/{div.find("a")["href"]}'
@@ -65,6 +63,7 @@ def get_all_urls(config: dict, company_url: str) -> list:
 
     else:
         return urls
+
 
 
 if __name__ == '__main__':
