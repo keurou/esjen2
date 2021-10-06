@@ -36,7 +36,7 @@ def get_company(config: dict, kind_url: str) -> list:
         urls = []
         page = 0
         company_experience_es_url = kind_url
-        while page < 1:
+        while page < 2:
             page += 1
             sleep(1)
 
@@ -175,10 +175,10 @@ if __name__ == '__main__':
     for i in tqdm(t):
         for j in i:
             # print(type(str(j[0])))
-            tmp += str(j[0]) + ","
-            tmp += str(j[1]) + "¥n"
+            # tmp += str(j[0]) + ","
+            tmp += str(j[1]) + "\n"
     tmp = tmp.replace('<h3>', "").replace("</h3>", "").replace("<p>", "").replace("</p>", "").replace("<br/>", "")
     #print(tmp)
-    with open("sample.txt", mode="a") as f:
+    with open("sample3.txt", mode="a") as f:
         f.write(tmp)
         print("end")
