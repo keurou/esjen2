@@ -19,7 +19,7 @@ def get_company(config: dict, kind_url: str) -> list:
         # ログイン
         driver.find_element_by_xpath('//*[@id="new_user"]/input[2]').click()
 
-        if input('start?: [(y/)n]').lower() == 'n': return
+        # if input('start?: [(y/)n]').lower() == 'n': return
         driver.get(kind_url)
         #
         # # ES・体験談
@@ -36,7 +36,7 @@ def get_company(config: dict, kind_url: str) -> list:
         urls = []
         page = 0
         company_experience_es_url = kind_url
-        while page < 2:
+        while page < 1:
             page += 1
             sleep(1)
 
@@ -166,19 +166,20 @@ if __name__ == '__main__':
     pp(urls2)
     pp("=" * 50)
 
-    # urls2 = ['https://www.onecareer.jp//companies/275/experiences/2022/735/510357',
-    #               'https://www.onecareer.jp//companies/275/experiences/2022/735/515016',
-    #               'https://www.onecareer.jp//companies/275/experiences/2022/735/484570']
-
     t = get_txt(urls2)
     tmp = ""
     for i in tqdm(t):
         for j in i:
             # print(type(str(j[0])))
-            # tmp += str(j[0]) + ","
+            tmp += str(j[0]) + ","
             tmp += str(j[1]) + "\n"
     tmp = tmp.replace('<h3>', "").replace("</h3>", "").replace("<p>", "").replace("</p>", "").replace("<br/>", "")
+    tmp = tmp.replace("...", "")
+    tmp = tmp.replace("◯", "X")
+    tmp = tmp.replace("XX", "X")
+    tmp = tmp.replace("XX", "X")
+    tmp = tmp.replace("XX", "X")
     #print(tmp)
-    with open("sample3.txt", mode="a") as f:
+    with open("NASURA.txt", mode="a") as f:
         f.write(tmp)
         print("end")
